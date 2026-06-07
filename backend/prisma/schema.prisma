@@ -15,3 +15,29 @@ model OperationRecord {
   metric     String
   createdAt  DateTime @default(now())
 }
+
+enum FlowType {
+  PURCHASE_IN
+  SALE_OUT
+}
+
+enum FlowStatus {
+  NORMAL
+  ABNORMAL
+  PENDING
+}
+
+model StoreInventoryFlow {
+  id          Int        @id @default(autoincrement())
+  storeName   String
+  flowNo      String
+  flowType    FlowType
+  productName String
+  sku         String
+  quantity    Int
+  operator    String
+  status      FlowStatus
+  remark      String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
